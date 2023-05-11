@@ -1,0 +1,117 @@
+.contenidoHeader {
+    display: flex;
+    align-items: center;
+  }
+  
+  .contenidoHeader img {
+    width: 10%;
+    
+  }
+  
+  .contenidoHeader .contenidoHeader2 {
+    width: 100%;
+    text-align: center;
+  }
+ 
+.contenidoHeader nav {
+    width: 100%;
+    background-color: #333;
+    overflow: hidden;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: #beadbe;
+    text-align: center;
+    padding: 30px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    background-color: #111;
+    border-radius: 15px;
+  }
+ 
+
+  h1 {
+    color:#beadbe;
+    font-size: 3em;
+    
+  }
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-areas:
+        "header header header header header"
+        "nav main main main aside"
+        "nav main main main aside"
+        "nav main main main aside"
+        "nav main main main aside"
+        "nav main main main aside"
+        "nav main main main aside"
+        "nav main main main aside"
+        "nav footer footer footer footer"
+        "nav footer footer footer footer";
+    height: 100vh;
+}
+
+.header {
+    grid-area: header;
+    background-color: #333;
+}
+
+.nav {
+    grid-area: nav;
+    background-color: #4ac213;
+}
+
+.main {
+    grid-area: main;
+    background-color: #9c8416;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: #150a53;
+}
+
+.aside {
+    grid-area: aside;
+    background-color: orange;
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        grid-template-areas:
+            "header header header"
+            "nav main main"
+            "nav aside aside"
+            "footer footer footer";
+    }
+
+@media only screen and (max-width: 320px) {
+    .container {
+        grid-template-areas:
+            "header"
+            "nav"
+            "main"
+            "aside"
+            "footer";
+    }
+    
+}
+}
