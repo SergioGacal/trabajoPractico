@@ -11,3 +11,18 @@ const contenidoFooter = `
 `
 
 document.querySelector('.footer').innerHTML = contenidoFooter;
+
+const contenidoHeader = `
+<img onclick="inicio()" src="./img/logo3.png" alt="logo" />
+<h1>Club Deportivo y Cultural Barrio Unido</h1>
+<nav>
+  <ul>
+    <li><a href="./actividades.html">Actividades</a></li>
+    <li><a href="./mision.html">Misión</a></li>
+    <li><a href="./logros.html">Logros</a></li>
+    <li><a href="./nosotros.html">Nosotros</a></li>
+    <li><a href="./contacto.html">Contacto</a></li>
+  </ul>
+</nav>
+`
+document.querySelector('.header').innerHTML = contenidoHeader;

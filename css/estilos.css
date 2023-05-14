@@ -100,6 +100,10 @@
 .nav {
     grid-area: nav;
     height: 80vh;
+/*  
+    background-color: #f4b445;
+    color: #4585F4;
+ */
 }
 
 .main {
