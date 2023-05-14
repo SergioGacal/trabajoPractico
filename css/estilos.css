@@ -47,6 +47,15 @@
           width: 40%;
         }
 
+        h2 {
+          font-size: 2vw;
+          width: 40%;
+        }
+
+        p {
+          font-size: 1.2vw;
+        }
+
         nav {
           width: 60%;
           overflow: hidden;
@@ -111,10 +120,36 @@
     height: 80vh;
 }
 
+/*
+específicos de nuestra misión
+
+*/
+
+.imagenAnimada {
+  width:  60vh;
+  position: relative;
+  background-image: url("./img/animacion-futbol.jpg");
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .aside {
   grid-area: aside;
   height: 80vh;
 }
+
+
+
+
 
 
 
