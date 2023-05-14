@@ -54,6 +54,7 @@
 
         p {
           font-size: 1.2vw;
+          text-align: justify;
         }
 
         nav {
@@ -109,10 +110,8 @@
 .nav {
     grid-area: nav;
     height: 80vh;
-/*  
-    background-color: #f4b445;
-    color: #4585F4;
- */
+
+    
 }
 
 .main {
@@ -125,17 +124,25 @@ específicos de nuestra misión
 
 */
 
-.imagenAnimada {
-  width:  60vh;
+.carouselNuestraMision {
+  text-align: center;
   position: relative;
-  background-image: url("./img/animacion-futbol.jpg");
+  overflow: hidden;
 }
 
+#carouselNuestraMision {
+  max-height: 40vh;
+  object-fit: cover;
+}
+  
 
 
 
 
 
+/*
+específicos de actividades
+*/
 
 
 

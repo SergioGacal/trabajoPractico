@@ -26,3 +26,20 @@ const contenidoHeader = `
 </nav>
 `
 document.querySelector('.header').innerHTML = contenidoHeader;
+
+/* Carousel de misión */
+
+const imagesCarouselNuestraMision = ['./img/animacion-ajedrez.jpg', './img/animacion-basket.jpg', './img/animacion-canto.jpg', './img/animacion-futbol.jpg', './img/animacion-lectura.jpg', './img/animacion-pingpong.jpg', './img/animacion-yudo.jpg'];
+let index = Math.floor(Math.random() * 8);
+function carousel() {
+  const carouselImg = document.querySelector('#carouselNuestraMision');
+  carouselImg.src = imagesCarouselNuestraMision[index];
+  index += 1;
+  if (index === imagesCarouselNuestraMision.length) {
+    index = 0;
+  }
+}
+if (location.pathname.endsWith('mision.html')) {
+  setInterval(carousel,2000);
+}
+
