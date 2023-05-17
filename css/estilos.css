@@ -168,7 +168,11 @@
 /* agregue todos es estilos*/
 
 
-
+body{
+  position: relative;
+  padding-bottom: 3vh;
+  min-height: 100vh;
+}
 
 
 
@@ -198,7 +202,7 @@
 
 
 .nav {
-    height: 80vh; 
+    height: 76.4vh; 
 }
 
 .main {
@@ -238,7 +242,9 @@ específicos de actividades
     background-color:rgba(90,28,23,255);
     color:#f4b445;
     text-align: center;
-    height: 5vh;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 .footer a {
   display: inline-block;
