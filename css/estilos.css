@@ -5,7 +5,8 @@
 
 /* primero */
 .container {
-    /* display: grid;
+      /* 
+    display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(10, 1fr);
     grid-template-areas:
@@ -19,11 +20,14 @@
     "nav main main main aside"
     "nav main main main aside"
     "footer footer footer footer footer";
-    height: 100vh; */
-    display: flex;
-    flex-direction: column;
+    height: 100vh;
+    */
+
+    display: flex;  
+    flex-direction: column;   
+}   
     
-}
+
 .main{
   display: flex;
   flex-direction: column;
@@ -60,9 +64,21 @@
           width: 40%;
         }
 
+        h3 {
+          font-size: 1.6vw;
+          text-align: center;
+        }
+
+
         p {
           font-size: 1.2vw;
           text-align: justify;
+        }
+
+
+
+        #textoNoticias{
+          font-size: 0.9vw;
         }
 
         nav {
@@ -97,6 +113,38 @@
 
 
 
+/*  estilos de la nav del index    
+falta terminar de ajustar los tamaños
+*/
+
+#conteinerNav {
+  padding: 5px;
+  margin: 5px;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+#conteinerNoticias {
+  padding: 5px;
+  margin: 5px;
+  position: absolute;
+  top: 0;
+}
+
+#textoNoticias {
+  padding: 5px;
+  margin: 5px;
+  margin-right: 20px;
+  text-align: justify;
+}
+
+#imagenNoticias {
+    margin: 20px;
+    height: 20vh;
+    text-align: center;
+}
 
 
 
@@ -168,7 +216,7 @@
 /* agregue todos es estilos*/
 
 
-body{
+body{   /*  ver esto   */
   position: relative;
   padding-bottom: 3vh;
   min-height: 100vh;
@@ -234,6 +282,14 @@ específicos de nuestra misión
 específicos de actividades
 */
 
+
+
+
+
+.aside {
+  grid-area: aside;
+  height: 80vh;
+}
 
 
 
