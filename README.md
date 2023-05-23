@@ -17,7 +17,7 @@ Se incluyó un formulario de contacto que cuenta con validaciones JS en los camp
 
 Se utilizó un frame con un video de youtube, en el footer se incluyeron íconos descargados de Flaticon y 4 tipos distintos de fuentes de Google Fonts.
 
-El sitio cuenta con 6 páginas, 5 de ellas son responsivas en la mayoría de los disposivos en los que se probaron.
+El sitio cuenta con 6 páginas 100% responsivas en la mayoría de los disposivos en los que se probaron.
 
 Al navegar el sitio se puede acceder al índex haciendo clic en el logo, en el nombre del club  como también en el menú "Inicio"
 
