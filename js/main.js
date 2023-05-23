@@ -14,10 +14,11 @@ document.querySelector('.footer').innerHTML = contenidoFooter;
 
 const contenidoHeader = `
 <img onclick="inicio()" src="./img/logo3.png" alt="logo" />
-<h1>Club Deportivo y Cultural Barrio Unido</h1>
+<h1 onclick="inicio()">Club Deportivo y Cultural Barrio Unido</h1>
 <nav>
   <ul>
-    <li><a href="./actividades.html">Actividades</a></li>
+    <li><a href="./index.html">Inicio</a></li>
+    <li><a href="./noticias.html">Noticias</a></li>
     <li><a href="./mision.html">Misión</a></li>
     <li><a href="./logros.html">Logros</a></li>
     <li><a href="./nosotros.html">Nosotros</a></li>
@@ -27,8 +28,9 @@ const contenidoHeader = `
 `
 document.querySelector('.header').innerHTML = contenidoHeader;
 
-/* Carousel de misión */
+/* Carousel de misión | lo termnamos sacando porque no funcionó correctamente en Google Chrome */
 
+/*
 const imagesCarouselNuestraMision = ['./img/animacion-ajedrez.jpg', './img/animacion-basket.jpg', './img/animacion-canto.jpg', './img/animacion-futbol.jpg', './img/animacion-lectura.jpg', './img/animacion-pingpong.jpg', './img/animacion-yudo.jpg'];
 let index = Math.floor(Math.random() * 8);
 function carousel() {
@@ -42,9 +44,10 @@ function carousel() {
 if (location.pathname.endsWith('mision.html')) {
   setInterval(carousel,2000);
 }
+*/
 
 
-/*  Display de Noticias, nav en el Index */
+/*  Display de Noticias */
 
 const noticia01 = 'Fútbol: El equipo de fútbol del Club Barrio Unido se consagra campeón del torneo barrial En una emocionante final, el equipo de fútbol del Club Barrio Unido logró imponerse y ganar el título de campeones del torneo barrial. Con un juego sólido y un esfuerzo incansable, los jugadores demostraron su habilidad y determinación en cada partido, llevando la gloria al club.'
 const noticia02 = 'Báskelball: El equipo de Báskelball del Club Barrio Unido alcanza el segundo lugar en la liga local En una temporada llena de intensidad y competencia, el equipo de Báskelball del Club Barrio Unido logró llegar a la final, quedando en un destacado segundo lugar. Los jugadores demostraron un gran desempeño en cada partido, dejando en alto el nombre del club.'
@@ -87,17 +90,23 @@ const noticia38 = 'Equipo de balonmano del Club Barrio Unido participa en emocio
 const noticia39 = 'Participante de artes marciales del Club Barrio Unido obtiene medalla de bronce en torneo estatal Un dedicado participante de artes marciales del Club Barrio Unido se destacó en un desafiante torneo estatal al obtener una merecida medalla de bronce. Su habilidad técnica, mentalidad competitiva y constante entrenamiento le permitieron enfrentar a oponentes de alto nivel, dejando en alto el nombre del club en la disciplina.'
 const noticia40 = 'Equipo de vóley mixto del Club Barrio Unido disfruta de un amistoso encuentro con otro club de la ciudad El equipo de vóley mixto del Club Barrio Unido se reunió con entusiasmo para un amistoso encuentro con otro club de la ciudad. A pesar de no haber ganado, los jugadores disfrutaron de la experiencia de jugar juntos, fortaleciendo los lazos de amistad y la pasión por el vóley. El espíritu deportivo y la camaradería prevalecieron durante todo el encuentro.'
 
-const noticias = [noticia01, noticia02, noticia03, noticia04, noticia05, noticia06, noticia07, noticia08, noticia09, noticia10, noticia11, noticia12, noticia13, noticia14, noticia15, noticia16, noticia17, noticia18, noticia19, noticia20, noticia21, noticia22, noticia23, noticia24, noticia25, noticia26, noticia27, noticia28, noticia29, noticia30, noticia31, noticia32, noticia33, noticia34, noticia35, noticia36, noticia37, noticia38, noticia39, noticia40];
-const fotos = ['./img/animacion-ajedrez.jpg', './img/animacion-basket.jpg', './img/animacion-canto.jpg', './img/animacion-futbol.jpg', './img/animacion-lectura.jpg', './img/animacion-pingpong.jpg', './img/animacion-yudo.jpg','./img/animacion-ajedrez.jpg', './img/animacion-basket.jpg', './img/animacion-canto.jpg', './img/animacion-futbol.jpg', './img/animacion-lectura.jpg', './img/animacion-pingpong.jpg', './img/animacion-yudo.jpg','./img/animacion-ajedrez.jpg', './img/animacion-basket.jpg', './img/animacion-canto.jpg', './img/animacion-futbol.jpg', './img/animacion-lectura.jpg', './img/animacion-pingpong.jpg', './img/animacion-yudo.jpg','./img/animacion-ajedrez.jpg', './img/animacion-basket.jpg', './img/animacion-canto.jpg', './img/animacion-futbol.jpg', './img/animacion-lectura.jpg', './img/animacion-pingpong.jpg', './img/animacion-yudo.jpg','./img/animacion-ajedrez.jpg', './img/animacion-basket.jpg', './img/animacion-canto.jpg', './img/animacion-futbol.jpg', './img/animacion-lectura.jpg', './img/animacion-pingpong.jpg', './img/animacion-yudo.jpg']
+const noticias = [noticia01, noticia02, noticia03, noticia04, noticia05, noticia06, noticia07, noticia08, noticia09, noticia10]
+const noticias2 = [noticia11, noticia12, noticia13, noticia14, noticia15, noticia16, noticia17, noticia18, noticia19, noticia20]
+const noticias3 = [noticia21, noticia22, noticia23, noticia24, noticia25, noticia26, noticia27, noticia28, noticia29, noticia30]
+const noticias4 = [noticia31, noticia32, noticia33, noticia34, noticia35, noticia36, noticia37, noticia38, noticia39, noticia40]
 
 let indiceNoticiaActual = 0;
 
 function mostrarNoticiaActual() {
-  const desplazaTexto = document.getElementById('textoNoticias');
-  const desplazaImagen = document.getElementById('imagenNoticias');
+  const desplazaTexto = document.getElementById('textoNoticias1');
+  const desplazaTexto2 = document.getElementById('textoNoticias2');
+  const desplazaTexto3 = document.getElementById('textoNoticias3');
+  const desplazaTexto4 = document.getElementById('textoNoticias4');
 
   desplazaTexto.textContent = noticias[indiceNoticiaActual];
-  desplazaImagen.src = fotos[indiceNoticiaActual];
+  desplazaTexto2.textContent = noticias2[indiceNoticiaActual];
+  desplazaTexto3.textContent = noticias3[indiceNoticiaActual];
+  desplazaTexto4.textContent = noticias4[indiceNoticiaActual];
 }
 
 function desplazarNoticia() {
@@ -105,10 +114,103 @@ function desplazarNoticia() {
 
   if (indiceNoticiaActual === noticias.length) {
     indiceNoticiaActual = 0;
+    
   }
-
   mostrarNoticiaActual();
 }
 
-mostrarNoticiaActual();
-setInterval(desplazarNoticia, 5000);
+if (location.pathname.endsWith('noticias.html')) {
+  setInterval(desplazarNoticia,5000);
+}
+
+
+
+
+ 
+
+//código de nosotros.html
+
+async function socios() {
+  let resultados = await fetch("https://randomuser.me/api/?nat=es&results=10")
+    .then((response) => response.json())
+    .then((data) => data);
+
+  const tarjetaContainer = document.querySelector(".tarjetas-container .tarjeta");
+  tarjetaContainer.innerHTML = "";
+
+  for (let elemento of resultados.results) {
+    let apellido = elemento.name.last.slice(0,1);
+    let nombre = elemento.name.first;
+    let foto = elemento.picture.large;
+    let edad = elemento.dob.age;
+    let antiguedad = elemento.registered.age;
+    let registrado = elemento.registered.date.slice(0, 4);
+    let categoriaSocio = ""; 
+    if (antiguedad >= 20) {categoriaSocio = "Socio Honorario";} else if (
+        antiguedad >= 10) {categoriaSocio = "Socio Vitalicio";} else if (
+            edad < 25) {categoriaSocio = "Juvenil";} else {
+            categoriaSocio = "Activo";}
+    let tarjetaHTML = `
+      <div class="tarjeta-socio ${categoriaSocio}">
+        <h4>${categoriaSocio}</h4>
+        <h4>${nombre} ${apellido}
+        (${edad})<br>Registrado: ${registrado}</h4><img src="${foto}" alt="Foto de ${nombre} ${apellido}" />
+      </div>
+    `;
+    tarjetaContainer.innerHTML += tarjetaHTML;
+  }
+}
+if (location.pathname.endsWith('nosotros.html')) {
+  socios();
+  setInterval(socios, 10000);
+}
+
+
+
+function asociarse(){
+  window.location.href = "contacto.html"
+}
+
+
+
+// Validaciones del form. contacto
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  
+  var form = document.querySelector(".form");
+  var nombreapellidoInput = document.getElementById("nombreapellido");
+  var correoelectronicoInput = document.getElementById("correoelectronico");
+  var telefonoInput = document.getElementById("telefono");
+  var motivoInputs = document.querySelectorAll('input[name="motivo"]');
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    if (nombreapellidoInput.value.trim() === "") {
+      alert("Por favor, ingresa tu nombre y apellido");
+      return;
+    }
+    var telefonoValue = telefonoInput.value.trim();
+    if (!/^\d{8,12}$/.test(telefonoValue)) {
+      alert("Por favor, ingresa un número de teléfono válido");
+      return;
+    }
+
+    var correoelectronicoValue = correoelectronicoInput.value.trim();
+    if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(correoelectronicoValue)) {
+      alert("Por favor, ingresa una dirección de correo electrónico válida");
+      return;
+    }
+
+    var checkedMotivos = Array.from(motivoInputs).some(function(input) {
+      return input.checked;
+    });
+    if (!checkedMotivos) {
+      alert("Por favor, selecciona al menos una opción del motivo de la consulta");
+      return;
+    }
+
+    alert("El formulario se envió correctamente, estaremos contactándote a la brevedad");
+    form.reset();
+  });
+});
