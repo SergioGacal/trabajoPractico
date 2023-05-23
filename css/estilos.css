@@ -68,11 +68,7 @@ li a:hover {
   background-color: rgba(90, 28, 23, 255);
   color: #f4b445;
   height: 5vh;
-}
-
-.footer a {
-  flex: 0 0 auto;
-  margin: 0 0.1vh;
+  overflow-x: auto;
 }
 
 .footer a img {
@@ -167,22 +163,23 @@ form legend {
 
 .input-padron {
   display: block;
-  margin: 0 0 20px;
-  padding: 10px 25px;
+  margin: 0 0 0.3vh;
+  padding: 0.2vh 0.5vh;
   width: 50%;
 }
 
 .checkbox {
-  margin: 20px 0;
+  margin: 0.2vh 0;
 }
 
 .enviar {
-  width: 40%;
-  padding: 15px 0;
-  font-size: 18px;
+  width: auto;
+  margin-left: calc(max(10vh));
+  padding: 1vh 0;
+  font-size: 2vh;
   font-weight: bold;
   border: none;
-  border-radius: 5px;
+  border-radius: 1vh;
   transition: 1s all;
   cursor: pointer;
 }
@@ -217,10 +214,9 @@ form legend {
 }
 
 .form .linea .enviar {
+/*   margin-left: 5rem; */
   background-color: rgba(90, 28, 23, 255);
-  ;
   color: #f4b445;
-  margin-left: 5rem;
 }
 
 .form .linea .enviar:hover {
@@ -437,7 +433,7 @@ body {
   display: block;
   padding: 30px 20px;
   background-color: rgba(90, 28, 23, 255);
-
+  text-decoration: none;
   overflow: hidden;
 
   position: relative;
@@ -616,10 +612,17 @@ body {
 
 
 @media only screen and (max-width: 420px) {
+
+  .header{
+    flex-direction: column;
+  }
   
   .header h1 {
-    display: none;
+    display: flex;
+    width: 100%;
+    font-size: 2rem;
   }
+
 
   li a {
     font-size: 0.9rem;
@@ -647,7 +650,17 @@ body {
   }
 
   .header nav {
+    width: 100%;
     align-items:flex-start;
+
   }
+
+  .form .linea {
+    flex-direction: column;
+  }
+  .form .linea .enviar {
+    margin-left: 0rem;
+  }
+
   
 }

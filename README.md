@@ -39,9 +39,10 @@ Navegación del sitio. Aspectos más importantes. Asimismo mencionamos los conoc
 - index.html: Cuenta con ímagenes del club y su historia.
 - noticias.html: Cada 5 segundos van cambiando las últimas noticias del club. Estas abarcan distintos aspectos: deportivos, sociales y culturales. Para ellos se generó la función mostrarNoticiaActual() mediante JS.
 - mision.html: Cuenta la misión del club y tiene un iframe de youtube con un video realizado con imágenes de actividades realizadas en el club
-- logoros.html: tiene distintas cards que muestran imágenes e historias de los logros del club.
-- nosotros.html: Es una página que tiene reconocimiento a los miembros del club. Se explota la API de randomuser.me/API. Se realiza una consulta y se piden 10 resultados. Se agregó la opción de país España para que los nombres nos resulten familiares. Se muestra para cada uno una tarjeta con el nombre, la primer letra del apellido, la edad (entre paréntesis), el año desde el que es socio del club. Asimismo en función de la antiguedad en el club y a la edad del socio se inventaron categorías como "honorario", "activo", "Vitalicio" o "Juvenil". Además de mostrar la categoría en la tarjeta se muestra esta con distintos colores. Esta página también tiene un enlace al formulario ofreciendo "asociarse".
-- contacto.html: cuenta con un formulario de registro.
+- logros.html: tiene distintas cards que muestran imágenes e historias de los logros del club.
+- nosotros.html: Es una página de reconocimiento a los miembros del club. Se explota la API de randomuser.me/API. Se realiza una consulta y se piden 10 resultados. Se agregó la opción de país España para que los nombres nos resulten familiares. Se muestra para cada uno una tarjeta con el nombre, la primer letra del apellido, la edad (entre paréntesis), el año desde el que es socio del club. Asimismo en función de la antiguedad en el club y a la edad del socio se inventaron categorías como "honorario", "activo", "Vitalicio" o "Juvenil". Además de mostrar la categoría en la tarjeta se muestra esta con distintos colores. Esta página también tiene un enlace al formulario ofreciendo "asociarse".
+- contacto.html: cuenta con un formulario de registro. Se incluyeron validaciones con JS para el ingreso de nombre, mail, teléfono y motivo de la consulta. Al presionar el botón "enviar formulario" genea un "alert" con el resultado exitoso o con mensaje de error.
+
 
 
 
