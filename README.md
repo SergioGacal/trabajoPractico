@@ -4,15 +4,11 @@ Integrantes:
 
 Sergio Gacal. DNI 23.407.178 gacalsergio@gmail.com
 
-Matias Ferraro
+Matias Andrés Ferraro DNI 33.959.091 matiasferrero07@gmail.com
 
-Nahuel Dimuro
-
-Camila
-
+Nahuel Dimuro 
 
 Mayo 2023.
-Sitio realizado colaborativamente.
 
 Es la página de un club de barrio "Club Social y Deportiva Barrio Unido". El mismo no existe, la información fue inventada, se trata de un proyecto ficticio y las imágenes y datos utilizados son solo para fines ilustrativos.
 Las imágenes se descargaron de https://unsplash.com/ donde se indica que pueden ser utilizadas retribuyendo derechos de autor que corresponden a: https://unsplash.com/es/@judesaf y a https://unsplash.com/es/@create4eyes
@@ -34,10 +30,10 @@ Se utlizó API de https://randomuser.me/api.
 
 No se utlizaron Bootstrap u otros Frameworks de CSS.
 
-El situo está disponible en GitHub desde donde fue desarrollado colaborativamente. Asimismo puede ser navegado desde Netlify.
+El sitio está disponible en GitHub desde donde fue desarrollado colaborativamente. Asimismo puede ser navegado desde Netlify https://23020group15.netlify.app/
 
 
-Navegación del sitio. Aspectos más importantes. Asimismo mencionamos los conocimientos que aplicamos.
+Navegación del sitio. Aspectos más importantes. 
 
 - Comunes a todas las páginas: header y footer fueron incorpoarados utilizando JS. El header cuenta con un logo creado con la versión gratuita de canva.com 
 - index.html: Cuenta con ímagenes del club y su historia.
@@ -47,6 +43,9 @@ Navegación del sitio. Aspectos más importantes. Asimismo mencionamos los conoc
 - nosotros.html: Es una página de reconocimiento a los miembros del club. Se explota la API de randomuser.me/API. Se realiza una consulta y se piden 10 resultados. Se agregó la opción de país España para que los nombres nos resulten familiares. Se muestra para cada uno una tarjeta con el nombre, la primer letra del apellido, la edad (entre paréntesis), el año desde el que es socio del club. Asimismo en función de la antiguedad en el club y a la edad del socio se inventaron categorías como "honorario", "activo", "Vitalicio" o "Juvenil". Además de mostrar la categoría en la tarjeta se muestra esta con distintos colores. Esta página también tiene un enlace al formulario ofreciendo "asociarse".
 - contacto.html: cuenta con un formulario de registro. Se incluyeron validaciones con JS para el ingreso de nombre, mail, teléfono y motivo de la consulta. Al presionar el botón "enviar formulario" genea un "alert" con el resultado exitoso o con mensaje de error.
 
+El sitio fue desarrollado para resolver las consignas del trabajo práctico que nos fuera propusto como actividad.
+
+ Se revisó y probó el sitio en diferentes dispositivos y navegadores para asegurar que la navegación y visualización sean consistentes
 
 
 
