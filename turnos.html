@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/estilos.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lato:ital@1&family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="icon" href="./img/Logo1.png" type="image/x-icon">
+  <title>Barrio Unido</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="header"></div>
+    <div class="centro">
+            <div class="nav">
+                <div class="imagenIzquierdaIndex">
+                </div>
+            </div>
+            <div class="main">
+                <br><br>
+
+
+<div id="app"> <!-- nivel 1 -->
+    <div class="login">
+        <div v-if="usuarioActivo"> <!-- nivel 2 -->
+            <h2> {{ usuarioActivo.slice(1,-1) }}</h2>  
+            
+            <button class="turno"  @click="logout">Salir</button>
+
+            <div v-if="+administra === 1"> <!-- nivel 3 ADMINISTRADOR -->
+
+                <br><p>Administración de Usuarios y Turnos </p>
+                <p>Turnos disponibles: {{ cantidadTurnosDisponibles }}</p>
+
+                <div class="botoneraAdministrador">
+                <button class="turno" @click="showNuevoUsuarioForm" type="button">
+                    {{ nuevoUsuarioVisible ? 'Cancelar Alta' : 'Nuevo Usuario' }}
+                  </button>
+                <button class="turno" @click="mostrarUsuarios = !mostrarUsuarios" type="button">
+                        {{ mostrarUsuarios ? 'Ocultar Usuarios' : 'Mostrar Usuarios' }}
+                      </button>
+                <button class="turno"  @click="showNuevoTurnoForm" type="button">
+                        {{ nuevoTurnoVisible ? 'Cancelar Alta' : 'Nuevo Turno' }}
+                      </button>
+                <button class="turno"  @click="toggleMostrarTurnosDisponibles" type="button">
+                        {{ mostrarTurnosDisponibles ? 'Ocultar Disponibles' : 'Mostrar Turnos Disponibles' }}
+                      </button>
+                </div>
+
+                    <!-- MODULO USUARIO -->
+                
+                <div class="moduloUsuario">
+                    
+                <!-- mostrar usuuarios -->
+                <table class="tablaAdm" v-if="mostrarUsuarios">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Clave</th>
+                            <th>Administra</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="usuario in usuarios" :key="usuario.id">
+                            <td>{{ usuario.id }}</td>
+                            <td>{{ usuario.usuario }}</td>
+                            <td v-html="hideClave(usuario.clave)"></td>
+                            <td>{{ mostrarAdministra(usuario.administra) }}</td>
+                            <td><button class="turno reducir"  @click="editUsuario(usuario.id)">Editar</button></td>
+                            <td><button class="turno reducir"  v-if="mostrarEliminar(usuario.id)" @click="deleteUsuario(usuario.id)">Eliminar</td>
+    
+                        </tr>
+                    </tbody>
+                </table>
+
+                  <!-- crear usuario -->
+                  <form class="formAdm"  v-if="nuevoUsuarioVisible" @submit="createUsuario">
+                    <label for="nuevo_usuario">Usuario:</label>
+                    <input type="text" id="nuevo_usuario" v-model="nuevoUsuario.usuario"><br>
+                    <label for="nuevo_clave">Clave:</label>
+                    <input type="text" id="nuevo_clave" v-model="nuevoUsuario.clave"><br>
+                    <label for="nuevo_administra">Administra:</label>
+                    <input type="text" id="nuevo_administra" v-model="nuevoUsuario.administra"><br>
+                    <button class="turno"  type="submit">Confirmar</button>
+                </form>    
+
+                    <!-- editar usuario -->                
+                <form class="formAdm" v-if="usuarioEditar" @submit="updateUsuario">
+                    <label for="edit_usuario">Usuario:</label>
+                    <input type="text" id="edit_usuario" v-model="usuarioEditar.usuario"><br>
+                    <label for="edit_clave">Clave:</label>
+                    <input type="text" id="edit_clave" v-model="usuarioEditar.clave"><br>
+                    <label for="edit_administra">Administra:</label>
+                    <input type="text" id="edit_administra" v-model="usuarioEditar.administra"><br>
+                    <button class="turno" type="submit">Confirmar</button>
+                  </form>
+
+                </div>
+
+
+                <div class="moduloTurnos">
+
+                    <!-- turnos disponibles -->
+                  <table  class="tablaAdm" v-if="mostrarTurnosDisponibles">
+                    <thead>
+                      <tr>
+                        <th>Actividad</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Observación</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="turno in turnosDisponibles" :key="turno.id">
+                        <td>{{ turno.actividad }}</td>
+                        <td>{{ formatDate(turno.fecha) }}</td>
+                        <td>{{ formatHour(turno.hora) }}</td>
+                        <td>{{ turno.observacion }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <!-- nuevo turno -->
+                  <form class="formAdm" v-if="nuevoTurnoVisible" @submit.prevent="enviarNuevoTurno">
+                    <label id="etiqueta" for="actividad">Actividad</label>
+                    <input type="text" id="actividad" v-model="nuevoTurno.actividad" required><br>
+                    <label id="etiqueta" for="fecha">Fecha</label>
+                    <input type="text" id="fecha" v-model="nuevoTurno.fecha" placeholder="YYYY-MM-DD" required><br>
+                    <label id="etiqueta" for="hora">Hora</label>
+                    <input type="number" id="hora" v-model="nuevoTurno.hora" min="0" max="23" required><br>
+                    <label id="etiqueta" for="participantes">Participantes</label>
+                    <input type="number" id="participantes" v-model="nuevoTurno.participantes" min="1" required><br>
+                    <button class="turno"  type="submit">Confirmar</button>
+                  </form>
+                </div>
+
+            </div> <!-- FIN nivel 3 ADMINISTRADOR -->
+
+            <div v-else ><!-- nivel 3 vif USUARIO -->
+                
+                <p>Ud. tiene {{ turnosUsuario.length }} turnos tomados.</p><br>
+                <div class="botoneraUsuario">
+                    <button class="turno"  @click="toggleMostrarTurnosTomados">{{ mostrarTurnosTomados ? 'Ocultar Turnos Tomados' : 'Ver mis Turnos' }}</button>
+                    <button class="turno"  @click="toggleMostrarTurnosDisponibles">{{ mostrarTurnosDisponibles ? 'Ocultar Turnos Disponibles' : 'Tomar Turno' }}</button>
+                </div>
+
+
+                <div class="moduloSocio">
+                <table class="tablaAdm" v-if="turnosUsuario.length > 0 && mostrarTurnosTomados">
+                    <thead>
+                      <tr>
+                        <th>Actividad</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Cancelar Turno</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="turno in turnosUsuario" :key="turno.id">
+                        <td>{{ turno.actividad }}</td>
+                        <td>{{ formatDate(turno.fecha) }}</td>
+                        <td>{{ formatHour(turno.hora) }}</td>
+                        <td><button class="turno reducir"  @click="cancelarTurno(turno.id)">Anular</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                  <table class="tablaAdm" v-if="mostrarTurnosDisponibles">
+                    <thead>
+                      <tr>
+                        <th>Actividad</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Tomar Turno</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="turno in turnosDisponibles" :key="turno.id">
+                        <td>{{ turno.actividad }}</td>
+                        <td>{{ turno.fecha }}</td>
+                        <td>{{ turno.hora }}</td>
+                        <td>
+                            <button class="turno reducir"  @click="tomarTurno(turno.id)" v-if="!turno.tomado">
+                            Confirmar</button>
+                          <button class="turno reducir"  @click="cancelarTurno(turno.id)" v-if="turno.tomado">
+                            Cancelar
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                
+             </div>  <!-- FIN nivel 3 vif UN SIMPLE MORTAL-->
+
+        </div> <!-- FIN nivel 2 -->
+        <div v-else> <!-- nivel 2 - vif -->
+            <h2>Ingrese Usuario y Clave</h2>
+            <br><br>
+
+            <form class="formAcceso">
+                <div class="form-group">
+                  <label for="log_usuario"></label>
+                  <input type="text" id="log_usuario" placeholder="Usuario" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="log_clave"></label>
+                  <input type="password" id="log_clave" placeholder="********" class="form-input">
+                </div>
+                <button @click="ingresarClave" type="button" class="form-button">Ingresar</button>
+              </form>
+
+        </div> <!-- FIN nivel 2 - vif -->
+    </div>
+
+
+</div> <!-- fin nivel 1 -->
+
+
+            </div>
+            <div class="aside">
+                <div class="imagenDerechaIndex"></div>
+            </div>
+        </div>
+    <div class="footer"></div>
+</div>   
+<script src="./js/main.js"></script> 
+
+
+
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    urlUsuarios: 'https://barriounido.pythonanywhere.com/usuarios',
+                    urlTurnos: 'https://barriounido.pythonanywhere.com/turnos',
+                    usuarios: [],
+                    turnos: [],
+                    usuarioEditar: null,
+                    nuevoUsuario: {
+                        usuario: '',
+                        clave: '',
+                        administra: ''
+                    },
+                    nuevoTurno: {
+                        actividad: '',
+                        fecha: '',
+                        hora: '',
+                        observacion: '',
+                        socio: ''
+                    },
+                    nuevoUsuarioVisible: false,
+                    nuevoTurnoVisible: false,
+                    mostrarUsuarios: false,
+                    mostrarTurnosDisponibles: false,
+                    mostrarTurnosTomados: false,
+                    turnosUsuario: [],
+                    };
+                },
+            created() {
+                fetch(this.urlUsuarios)
+                    .then(response => response.json())
+                    .then(data => {
+                        this.usuarios = data;
+                        console.log(this.usuarios);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+                fetch(this.urlTurnos)
+                    .then(response => response.json())
+                    .then(data => {
+                        this.turnos = data;
+                        console.log(this.turnos)
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+                this.cargarTurnosUsuario();
+                
+            },
+            computed: {
+                usuarioActivo() {
+                    return sessionStorage.getItem('usuarioActivo')
+                },
+                administra() {
+                    return sessionStorage.getItem('administra')
+                },
+                cantidadTurnosDisponibles() {
+                    return this.turnos.filter(turno => turno.socio === null).length;
+                },
+                turnosDisponibles() {
+                    return this.turnos.filter(turno => turno.socio === null);
+                },
+            },
+            mounted() {
+                    this.usuarioActivo = sessionStorage.getItem('usuarioActivo')
+                    this.administra = sessionStorage.getItem('administra')
+                },
+            methods: {
+                ingresarClave() {
+                    const usuario = document.getElementById("log_usuario").value;
+                    const clave = document.getElementById("log_clave").value;
+                    const usuarioEncontrado = this.usuarios.find(u => u.usuario === usuario);
+                    if (usuarioEncontrado) {
+                        if (usuarioEncontrado.clave === clave) {
+                            this.usuarioActivo = usuario;
+                            sessionStorage.setItem('usuarioActivo', JSON.stringify(usuarioEncontrado.usuario));
+                            sessionStorage.setItem('administra', JSON.stringify(usuarioEncontrado.administra));
+                            sessionStorage.setItem('id', JSON.stringify(usuarioEncontrado.id));
+                            location.reload()
+                        } else {
+                            alert("Clave incorrecta. Por favor, inténtalo nuevamente.");
+                        }
+                    } else {
+                        alert("Usuario no registrado. Por favor, regístrate antes de iniciar sesión.");
+                    }
+                },
+                logout() {
+                    sessionStorage.removeItem('usuarioActivo')
+                    sessionStorage.removeItem('administra')
+                    sessionStorage.removeItem('id')
+                    location.reload()
+                },
+                showNuevoUsuarioForm(){
+                    this.nuevoUsuarioVisible = true
+                },
+                createUsuario() {
+                    event.preventDefault();
+                    const url = this.urlUsuarios;
+                    const data = {
+                        usuario: this.nuevoUsuario.usuario,
+                        clave: this.nuevoUsuario.clave,
+                        administra: this.nuevoUsuario.administra,
+                    };
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Error en la solicitud POST');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log(data);
+                            this.usuarios.push(data);
+                            this.nuevoUsuario = {
+                                usuario: '',
+                                clave: '',
+                                administra: ''
+                            };
+                            this.nuevoUsuarioVisible = false;
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                },
+                deleteUsuario(id) {
+                    const url = this.urlUsuarios + `/${id}`;
+                    fetch(url, {
+                        method: 'DELETE'
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            location.reload();
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                },
+                editUsuario(id) {
+                    this.usuarioEditar = this.usuarios.find(u => u.id === id);
+                },          
+                updateUsuario() {
+                    const id = this.usuarioEditar.id;
+                    const url = this.urlUsuarios + `/${id}`;
+                    const data = {
+                        usuario: this.usuarioEditar.usuario,
+                        clave: this.usuarioEditar.clave,
+                        administra: this.usuarioEditar.administra
+                    };
+
+                    fetch(url, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+
+                    this.usuarioEditar = null;
+                },
+                formatDate(date) {
+                    const parts = date.split('-');
+                    const formattedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
+                    return formattedDate;
+                },
+                formatHour(hour) {
+                    return hour + ':00';
+                },
+                hideClave(clave) {
+                    return '*'.repeat(clave.length);
+                },
+                mostrarAdministra(administra) {
+                    return administra === 1 ? 'Sí' : 'No';
+                },
+                showNuevoUsuarioForm() {
+                    this.nuevoUsuarioVisible = !this.nuevoUsuarioVisible;
+            },
+                showNuevoTurnoForm() {
+                    this.nuevoTurnoVisible = !this.nuevoTurnoVisible;
+            },
+            enviarNuevoTurno() {
+                const url = this.urlTurnos;
+
+                for (let i = 0; i < this.nuevoTurno.participantes; i++) {
+                const data = {
+                    actividad: this.nuevoTurno.actividad,
+                    fecha: this.nuevoTurno.fecha,
+                    hora: this.nuevoTurno.hora,
+                    observacion: null,
+                    socio: null
+                };
+
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    this.turnos.push(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+                }
+
+                this.nuevoTurnoVisible = false;
+                this.nuevoTurno.actividad = '';
+                this.nuevoTurno.fecha = '';
+                this.nuevoTurno.hora = '';
+                this.nuevoTurno.participantes = '';
+            },
+            toggleMostrarTurnosDisponibles() {
+                this.mostrarTurnosDisponibles = !this.mostrarTurnosDisponibles;
+            },
+            toggleMostrarTurnosTomados(){
+                this.mostrarTurnosTomados = !this.mostrarTurnosTomados;
+            },
+            cargarTurnosUsuario() {
+                const idUsuario = sessionStorage.getItem('id');
+                const url = this.urlTurnos + `/socio/${idUsuario}`;
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                    this.turnosUsuario = data;
+                    })
+                    .catch(error => {
+                    console.error(error);
+                    });
+            },
+            cancelarTurno(id) {
+                //const url = `http://127.0.0.1:5000/turnos/${id}/desasignar`;
+                const url = this.urlTurnos + `/${id}/desasignar`;
+                fetch(url, {
+                method: 'PUT',
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const index = this.turnosUsuario.findIndex(turno => turno.id === id);
+                    if (index !== -1) {
+                        this.turnosUsuario[index].socio = null;
+                        //this.turnosUsuario.splice(index, 1);
+                        //this.cantidadTurnosDisponibles = this.turnos.filter(turno => turno.socio === null).length;
+                        location.reload();
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            },
+            tomarTurno(id) {
+                const socio = sessionStorage.getItem('id');
+                // const url = `http://127.0.0.1:5000/turnos/${socio}/${id}/tomar`;
+                const url = this.urlTurnos + `/${socio}/${id}/tomar`;
+
+                fetch(url, {
+                    method: 'PUT',
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                    const turno = this.turnos.find(turno => turno.id === id);
+                    if (turno) {
+                        turno.socio = socio;
+                    }
+                    this.cargarTurnosUsuario();
+                    })
+                    .catch(error => {
+                    console.error(error);
+                    });
+                },
+            cargarTurnosUsuario() {
+                const idUsuario = sessionStorage.getItem('id');
+                const url = this.urlTurnos + `/socio/${idUsuario}`;
+                //const url = `http://127.0.0.1:5000/turnos/socio/${idUsuario}`;
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                    this.turnosUsuario = data;
+                    })
+                    .catch(error => {
+                    console.error(error);
+                    });
+                },
+                mostrarEliminar(usuarioId) {
+                    return !this.turnos.some((turno) => turno.socio === usuarioId);
+                },
+
+        }
+    });
+
+    app.mount('#app');
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>

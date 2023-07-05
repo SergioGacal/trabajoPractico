@@ -664,3 +664,143 @@ body {
 
   
 }
+/* "login" es el div que tiene toda la logica del CRUD */
+.login h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.2vw;
+  border-bottom: solid black 1px;
+}
+
+.formAcceso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30vh;
+  padding: 2vh;
+  border: 2px solid gray;
+  border-radius: 5%;
+  background-color: gray;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
+}
+
+label {
+  font-weight: bold;
+}
+
+.form-input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.form-button {
+  padding: 1.1% 10%;
+  font-size: 1.3rem;
+  margin: 2%;
+  background-color: rgba(90, 28, 23, 255);
+  color: #f4b445;
+  border: none;
+  cursor: pointer;
+}
+
+.form-button:hover {
+   transform: scale(1.2);
+}
+
+.turno { /* esta es la clase del botón de "turnos" */
+  font-size: 1.3rem;
+  background-color: rgba(90, 28, 23, 255);
+  color: #f4b445;
+  border: none;
+  margin: 2%;
+  padding: 1.1% 3% 1.1% 3%;
+}
+
+.reducir {
+  background-color: transparent;
+  color: black ;
+  font-size: 1rem;
+}
+
+.turno:hover {
+  transform: scale(1.05);
+}
+
+
+.botoneraAdministrador {
+  display: flex;
+  justify-content: space-around
+}
+
+/* tablas Administración*/
+
+.tablaAdm {
+  width: 40%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.tablaAdm th,
+.tablaAdm td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.tablaAdm th {
+  background-color: #ccc;
+}
+
+.tablaAdm tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.tablaAdm tbody tr:hover {
+  background-color: #e0e0e0;
+}
+
+/* FORMULARIOS DE CURSOS */
+
+.formAdm {
+  width: 40%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+.formAdm label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.formAdm input[type="text"],
+.formAdm input[type="number"] {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+/* MODULO USUARIO y TURNOS  ADMINISTRADOR*/
+.moduloUsuario {
+  display: flex;
+}
+.moduloTurnos {
+  display: flex;
+  /* background-color: red; */
+}
+
+#etiqueta {
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.botoneraUsuario {
+  display: flex;
+  justify-content: space-around
+}

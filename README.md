@@ -3,8 +3,8 @@ Proyecto realizado por el equipo 15 del curso FullStack Python comisión 23020
 Integrantes:
 
 Sergio Gacal. DNI 23.407.178
-Matias Ferraro
-Nahuel Dimuro
+Matias Ferraro DNI 33.959.091
+Nahuel Dimuro DNI 39.548.086
 Camila
 
 Mayo 2023.
@@ -43,6 +43,10 @@ Navegación del sitio. Aspectos más importantes. Asimismo mencionamos los conoc
 - nosotros.html: Es una página de reconocimiento a los miembros del club. Se explota la API de randomuser.me/API. Se realiza una consulta y se piden 10 resultados. Se agregó la opción de país España para que los nombres nos resulten familiares. Se muestra para cada uno una tarjeta con el nombre, la primer letra del apellido, la edad (entre paréntesis), el año desde el que es socio del club. Asimismo en función de la antiguedad en el club y a la edad del socio se inventaron categorías como "honorario", "activo", "Vitalicio" o "Juvenil". Además de mostrar la categoría en la tarjeta se muestra esta con distintos colores. Esta página también tiene un enlace al formulario ofreciendo "asociarse".
 - contacto.html: cuenta con un formulario de registro. Se incluyeron validaciones con JS para el ingreso de nombre, mail, teléfono y motivo de la consulta. Al presionar el botón "enviar formulario" genea un "alert" con el resultado exitoso o con mensaje de error.
 
+Julio 2023.
+
+Se agrega la hoja de Cursos.
+Se desarrolló un CRUD con Usuarios y Cursos.
 
 
 
