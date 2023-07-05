@@ -2,10 +2,9 @@ Proyecto realizado por el equipo 15 del curso FullStack Python comisión 23020
 
 Integrantes:
 
-Sergio Gacal. DNI 23.407.178 gacalsergio@gmail.com
-Matias Ferraro DNI 33.959.091 matiasferrero07@gmail.com
-Nahuel Dimuro DNI 39.548.086
-Proyecto realizado por el equipo 15 del curso FullStack Python comisión 23020
+Sergio Gacal. gacalsergio@gmail.com
+Matias Ferraro matiasferrero07@gmail.com
+Nahuel Dimuro
 
 Mayo 2023.
 
