@@ -22,6 +22,7 @@ const contenidoHeader = `
     <li><a href="./mision.html">Misión</a></li>
     <li><a href="./logros.html">Logros</a></li>
     <li><a href="./nosotros.html">Nosotros</a></li>
+    <li><a href="./turnos.html">Turnos</a></li>
     <li><a href="./contacto.html">Contacto</a></li>
   </ul>
 </nav>
