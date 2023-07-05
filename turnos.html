@@ -115,7 +115,7 @@
                         <th>Actividad</th>
                         <th>Fecha</th>
                         <th>Hora</th>
-                        <th>Observación</th>
+                        <th>Borrar</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -123,7 +123,7 @@
                         <td>{{ turno.actividad }}</td>
                         <td>{{ formatDate(turno.fecha) }}</td>
                         <td>{{ formatHour(turno.hora) }}</td>
-                        <td>{{ turno.observacion }}</td>
+                        <td><button class="turno reducir" @click="borrarTurno(turno.id)">Borrar</button></td>
                       </tr>
                     </tbody>
                   </table>
@@ -186,8 +186,8 @@
                     <tbody>
                       <tr v-for="turno in turnosDisponibles" :key="turno.id">
                         <td>{{ turno.actividad }}</td>
-                        <td>{{ turno.fecha }}</td>
-                        <td>{{ turno.hora }}</td>
+                        <td>{{ formatDate(turno.fecha) }}</td>
+                        <td>{{ formatHour(turno.hora) }}</td>
                         <td>
                             <button class="turno reducir"  @click="tomarTurno(turno.id)" v-if="!turno.tomado">
                             Confirmar</button>
@@ -200,7 +200,7 @@
                   </table>
                 </div>
                 
-             </div>  <!-- FIN nivel 3 vif UN SIMPLE MORTAL-->
+             </div>  <!-- FIN nivel 3 vif  SOCIO-->
 
         </div> <!-- FIN nivel 2 -->
         <div v-else> <!-- nivel 2 - vif -->
@@ -545,8 +545,25 @@
                 mostrarEliminar(usuarioId) {
                     return !this.turnos.some((turno) => turno.socio === usuarioId);
                 },
-
-        }
+                borrarTurno(id) {
+                    const url = `https://barriounido.pythonanywhere.com/turnos/${id}`;    
+                    fetch(url, {
+                        method: 'DELETE',
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                        location.reload()
+                        this.turnosDisponibles = this.turnosDisponibles.filter(turno => turno.id !== id);
+                        console.log(`Turno con ID ${id} eliminado correctamente`);
+                        } else {
+                        throw new Error(`Error al eliminar el turno con ID ${id}`);
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+                    },
+                }
     });
 
     app.mount('#app');
